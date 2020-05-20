@@ -2,6 +2,7 @@ import React, {Component, useState, useEffect} from 'react';
 import {View, StyleSheet,ActivityIndicator,AppRegistry} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
+import MapViewDirections from'react-native-maps-directions'
 
 
 class Pharma_Map extends Component{
@@ -11,6 +12,8 @@ class Pharma_Map extends Component{
       lat:null,
       long:null,
       places:[],
+      desLatitude:null,
+      desLongitude:null
     }
   }
   UNSAFE_componentWillMount(){
@@ -23,10 +26,18 @@ class Pharma_Map extends Component{
       }
     )
   }
-  
+  onMarkerPress=(element)=>{
+    const l=element.geometry.location.lat;
+    const lo=element.geometry.location.lng;
+    
+   this.setState({
+    desLatitude:l,
+    desLongitude:lo
+   })
+ }
 
       getPlaces=()=>{
-        const url=this.getUrlWithParameters(this.state.lat,this.state.long,2000,'pharmacy','AIzaSyC2QNqKClJQ9nUR-Zi5Gv4NnUFpKwAoHdg')  
+        const url=this.getUrlWithParameters(this.state.lat,this.state.long,2000,'pharmacy','AIzaSyAQ4Udmdmd60avwA2FGIPdu39WBtoFmefg')  
       fetch(url)
       .then((data)=>data.json())
       .then((res)=>{
@@ -35,11 +46,15 @@ class Pharma_Map extends Component{
          arrayMarker.push(
            <Marker 
            key={i}
+           pinColor='green'
+           title={element.name}
            coordinate= {{
              latitude:element.geometry.location.lat,
              longitude:element.geometry.location.lng
 
-           }}/>
+           }}
+           onPress={()=>this.onMarkerPress(element)}
+           />
          )
         })
         this.setState({places:arrayMarker})
@@ -68,11 +83,28 @@ class Pharma_Map extends Component{
           initialRegion={{
             latitude:this.state.lat,
             longitude:this.state.long,
-            latitudeDelta:0.0922,
-            longitudeDelta:0.0421
+            latitudeDelta:0.0222,
+            longitudeDelta:0.0221
            } }>
        
               {this.state.places}
+              { this.state.desLatitude ? <MapViewDirections
+        origin={{
+        
+          latitude:this.state.lat,
+          longitude:this.state.long
+
+        }}
+        destination={{
+          latitude:this.state.desLatitude,
+          longitude:this.state.desLongitude
+        }}
+        apikey='AIzaSyAQ4Udmdmd60avwA2FGIPdu39WBtoFmefg'
+        strokeWidth={4}
+        strokeColor="green"
+        
+        mode="DRIVING"
+        /> :null}
 
            </MapView>: null}
            </View>
