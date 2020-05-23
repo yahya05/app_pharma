@@ -1,21 +1,51 @@
 import React,{useState} from 'react';
-import { StyleSheet, Text, View,Button,Image } from 'react-native';
+import { StyleSheet, Text, View,Button } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import Compte_Home from './compte_stack/Compte_Home';
+
 import GlobalStyles from '../assets/Gen_styles';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-const Compte=({navigation}) =>{
-    return (
-      <View style={GlobalStyles.container}>
-      <View style={GlobalStyles.header} >
+import { createStackNavigator } from '@react-navigation/stack';
+import Compte_D from './compte_stack/Compte_D';
+import Compte_mdp from './compte_stack/Compte_mdp';
+import Compte_refe from './compte_stack/Compte_refe';
+const Stack =createStackNavigator();
 
-        <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
-        <View>
-        <Image source={require('../assets/back.png')} style={GlobalStyles.back}  />
-
-        </View>
-
-        </TouchableOpacity>
-        </View>
-    </View>
-    );
+const Compte=({ navigation,route}) =>{
+  
+  if(route.state && route.state.index>0){
+    navigation.setOptions({tabBarVisible:false})
   }
+  else{
+    navigation.setOptions({tabBarVisible:true})
+
+  }
+  
+  return(
+  <Stack.Navigator
+  
+  initialRouteName="Compte"
+  headerMode="none"
+
+ 
+  
+
+
+  
+  >
+    <Stack.Screen name="Home" component={Compte_Home}
+    />
+
+   <Stack.Screen name="compte" component={Compte_D}
+    />
+ 
+   
+ <Stack.Screen name="Mdp" component={Compte_mdp}
+    />
+ <Stack.Screen name="fav" component={Compte_refe}
+    />
+
+  </Stack.Navigator>)
+}
   export default Compte;
+    
+

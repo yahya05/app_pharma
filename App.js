@@ -76,24 +76,24 @@ export default  App=()=> {
         let iconName;
 
         if (route.name === 'Produit') {
-          iconName = focused ? require('./assets/pill2.png') : require('./assets/pill1.png');
+          iconName = focused ? require('./assets/drug.png') : require('./assets/MED.png');
         }
        else if (route.name === 'Recherche') {
-          iconName = focused ? require('./assets/pin.png') : require('./assets/recherche.png');
+          iconName = focused ? require('./assets/lg.png') : require('./assets/l.png');
         }
         else if (route.name === 'Home') {
-          iconName = focused ? require('./assets/house3.png') : require('./assets/house4.png');
+          iconName = focused ? require('./assets/house3.png') : require('./assets/home.png');
         }
         else if (route.name === 'Garde') {
-          iconName = focused ? require('./assets/28.png') : require('./assets/27.png');
+          iconName = focused ? require('./assets/24.png') : require('./assets/26.png');
         }
         else if (route.name === 'Compte') {
-          iconName = focused ? require('./assets/user.png') : require('./assets/use.png');
+          iconName = focused ? require('./assets/user.png') : require('./assets/userr.png');
         }
      
 
         // You can return any component that you like here!
-        return( <Image source={iconName} style={{width:26,height:23}} resizeMode="contain"/>)
+        return( <Image source={iconName} style={{width:28,height:29}} resizeMode="contain"/>)
     
       }
       
@@ -104,7 +104,7 @@ export default  App=()=> {
      
         tabBarOptions={{
           activeTintColor: "#008A00",
-          inactiveTintColor: 'black',
+          inactiveTintColor: 'grey',
         }}
      
      

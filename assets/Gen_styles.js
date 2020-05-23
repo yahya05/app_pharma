@@ -28,7 +28,7 @@ const GlobalStyles=StyleSheet.create({
 
       },
 header:{
-    marginTop:30,
+    marginTop:10,
     alignItems:'center',
 flexDirection:'row',
 justifyContent:"center"
@@ -36,7 +36,7 @@ justifyContent:"center"
 
 },
 header_B:{
-    marginTop:"10%",
+    marginTop:10,
 flexDirection:'row',
 alignItems:'center',
 
@@ -166,6 +166,30 @@ panel:{
 sugges:{
   paddingBottom:"13%",
   paddingTop:"3%"
-}
+},
+compte:{
+ 
+  flexDirection:'row',
+  alignItems:"center",
+paddingVertical:"4%",
+
+},
+compte_g:{
+ 
+  flexDirection:'row',
+  justifyContent:"space-between",
+  alignItems:"center",
+backgroundColor:"white",
+
+},
+buttonb_C:{
+   
+  borderRadius:30,
+  paddingVertical:"3.5%",
+  paddingHorizontal:"25%",
+  backgroundColor:"#008A00",
+  margin:"2%",
+
+},
 });
 export default  GlobalStyles;
