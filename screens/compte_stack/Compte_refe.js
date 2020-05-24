@@ -29,7 +29,7 @@ const Compte_refe=({navigation}) =>{
         </View>
         <View style={{backgroundColor:"white",borderBottomColor:"#E0E0E0",borderBottomWidth:1}}  >
          
-        <Image source={require('../../assets/phar_fav.png')} style={{height:200,width:"100%"}} />
+        <Image source={require('../../assets/phar_fav.jpg')} style={{height:230,width:"100%"}} />
          
         
 <Text style={{fontSize:25,padding:"4%"}} >NOM PHAR </Text>
@@ -62,7 +62,7 @@ const Compte_refe=({navigation}) =>{
              
             </View>
             <View style={{marginVertical:19}}>
-    <TouchableOpacity>
+    <TouchableOpacity  onPress={()=>navigation.navigate('modifav')}>
     <Text style={{color:"#008A00",alignSelf:"center",fontSize:17,fontWeight:"bold"}}>MODIFIER MA PHARMACIE REFERENTE</Text>
      </TouchableOpacity>
     </View>

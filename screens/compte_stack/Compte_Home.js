@@ -3,7 +3,6 @@ import { StyleSheet, Text, View,Button ,TouchableOpacity,Image } from 'react-nat
 import GlobalStyles from '../../assets/Gen_styles';
 import { TextInput } from 'react-native-paper';
 import Feather from 'react-native-vector-icons/Feather';
-import ToggleSwitch from 'toggle-switch-react-native'
 import { ScrollView } from 'react-native-gesture-handler';
 
 const Compte_Home=({navigation}) =>{
@@ -20,7 +19,7 @@ const Compte_Home=({navigation}) =>{
             <TouchableOpacity  onPress={()=>navigation.navigate('compte')}>
                 <View  style={GlobalStyles.compte_g} >
                     <View style={GlobalStyles.compte}>
-                          <Image source={require('../../assets/userr.png')}  style={{alignSelf:"center",marginHorizontal:9,height:30,width:30}} />
+                          <Image source={require('../../assets/user_c.png')}  style={{alignSelf:"center",marginHorizontal:9,height:30,width:30}} />
                           <Text style={{color:"#808080"}}>yahiamah1999@gmail.com</Text>
 
                     </View>
@@ -38,7 +37,7 @@ const Compte_Home=({navigation}) =>{
             <TouchableOpacity>
                 <View  style={GlobalStyles.compte_g} >
                     <View style={GlobalStyles.compte}>
-                          <Image source={require('../../assets/userr.png')}  style={{alignSelf:"center",marginHorizontal:9,height:30,width:30}} />
+                          <Image source={require('../../assets/reser.png')}  style={{alignSelf:"center",marginHorizontal:9,height:30,width:30}} />
                           <Text style={{color:"#808080"}}>Mes reservations</Text>
 
                     </View>
@@ -85,7 +84,7 @@ const Compte_Home=({navigation}) =>{
           <Text style={styles.text1} >MES ADRESSES ENREGISTREES </Text>
         </View>
         <View style={{borderBottomColor:"#E0E0E0",borderBottomWidth:1}} >
-            <TouchableOpacity>
+            <TouchableOpacity   onPress={()=>navigation.navigate('adresse')}>
                 <View  style={GlobalStyles.compte_g} >
                     <View style={GlobalStyles.compte}>
                         <View style={{borderWidth:2,borderColor:'#E9E9E9',borderRadius:100,paddingVertical:9,backgroundColor:'#F2F2F2',marginLeft:9}} >
@@ -110,7 +109,7 @@ const Compte_Home=({navigation}) =>{
             </TouchableOpacity>
         </View>
         <View style={{borderBottomColor:"#E0E0E0",borderBottomWidth:1}} >
-            <TouchableOpacity>
+            <TouchableOpacity  onPress={()=>navigation.navigate('adresse')}>
                 <View  style={GlobalStyles.compte_g} >
                     <View style={GlobalStyles.compte}>
                         <View style={{borderWidth:2,borderColor:'#E9E9E9',borderRadius:100,paddingVertical:9,backgroundColor:'#F2F2F2',marginLeft:9}} >
@@ -153,14 +152,7 @@ const Compte_Home=({navigation}) =>{
                
 
                  <View   >
-                 <ToggleSwitch
-  onColor="#008A00"
-  offColor='#F2F2F2'
- 
-  size="large"
-  
-/>
-
+              
                  </View>
                  </View>
             

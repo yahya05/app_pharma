@@ -8,6 +8,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Compte_D from './compte_stack/Compte_D';
 import Compte_mdp from './compte_stack/Compte_mdp';
 import Compte_refe from './compte_stack/Compte_refe';
+import Compte_modifref from './compte_stack/Compte_modifref';
+import Compte_adresse from './compte_stack/Compte_adresse';
 const Stack =createStackNavigator();
 
 const Compte=({ navigation,route}) =>{
@@ -42,6 +44,10 @@ const Compte=({ navigation,route}) =>{
  <Stack.Screen name="Mdp" component={Compte_mdp}
     />
  <Stack.Screen name="fav" component={Compte_refe}
+    />
+    <Stack.Screen name="modifav" component={Compte_modifref}
+    />
+      <Stack.Screen name="adresse" component={Compte_adresse}
     />
 
   </Stack.Navigator>)
