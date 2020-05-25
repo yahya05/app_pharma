@@ -27,6 +27,18 @@ const GlobalStyles=StyleSheet.create({
     marginBottom:30,
 
       },
+      panel_cnx:{
+        borderRadius:10,
+        backgroundColor:'white',
+        paddingVertical:5,
+        marginHorizontal:8,
+        marginTop:"3%",
+        marginHorizontal:9,
+        borderColor:'#E9E9E9',
+        borderWidth:1,
+        height:"40%"
+       
+       },
 header:{
     marginTop:10,
     alignItems:'center',

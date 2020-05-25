@@ -3,14 +3,20 @@ import { StyleSheet, Text, View,Button ,TouchableOpacity,Image,ScrollView} from 
 import GlobalStyles from '../assets/Gen_styles';
 import { FlatList } from 'react-native-gesture-handler';
 class Home extends React.Component{
-  render(){
-    state={
-      people:[{ name:'CORONA',date:'14/10/1998',titre:"Faire ses courses au temps du Covid-19",key:'1'},{ name:'CORONA',date:'14/10/1998',titre:"Faire ses courses au temps du Covid-19",key:'2'},{ name:'CORONA',date:'14/10/1998',titre:"Faire ses courses au temps du Covid-19",key:'3'}
-
-
-    ]
+  constructor(){
+    super()
+    this.state={
+      nom:'marwan',
+    
+      people: [{ name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '1' },
+      { name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '2' },
+      { name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '3' }
+      ],
     }
-   
+  }
+  render(){
+
+    
     return (
       <View style={GlobalStyles.container}>
          <View style={GlobalStyles.header} >
@@ -18,7 +24,28 @@ class Home extends React.Component{
 <Text style={{color:"#008A00",fontWeight:"bold",fontSize:18}}> LePharmacien</Text>
         </View>
       <ScrollView>
+      {this.state.nom ?      <View style={GlobalStyles.panel_cnx} >
 
+<View style={{ flexDirection:'row', alignItems:"center",}} >
+    <Image style={{height : 100,width : 100 ,borderRadius:360,paddingRight:"4%"}} source={require('../assets/bg.png')} />
+    <Text style={{fontSize:25,padding:"4%"}}>Pharmacie Dialo</Text>
+    </View>
+
+    <View  style={{ marginLeft:"3%", flexDirection:'column',alignItems:"flex-start",justifyContent:"flex-start"}} >
+        <Text style={{color:"red",paddingTop:"4%",fontSize:16}}>Actuellement : Ouverte </Text>
+        <Text  style={{fontSize:25}}>+212522627372 </Text>
+</View>
+
+<View style={{marginTop:"10%",marginBottom:"2%"}}>
+  
+    <TouchableOpacity  onPress={() => this.props.navigation.navigate('Garde')} >
+    <Text style={{color:"#008A00",alignSelf:"center",fontSize:17,fontWeight:"bold",paddingBottom:0}}>TROUVER UNE PHARMACIE</Text>
+    <Text style={{color:"#008A00",alignSelf:"center",fontSize:17,fontWeight:"bold",paddingTop:0}}>OUVERTE OU DE GARDE</Text>
+
+    </TouchableOpacity>
+</View>
+
+</View>:
         <View style={GlobalStyles.panel} >
           <View  style={GlobalStyles.sugges}>
           <Text style={GlobalStyles.conn}> Pour bénéficier de la totalité des</Text>
@@ -40,7 +67,7 @@ class Home extends React.Component{
 
     </TouchableOpacity>
 
-      </View>
+      </View>}
 
       <View>
 
