@@ -15,7 +15,14 @@ class Home extends React.Component{
     }
   }
   render(){
-
+    state = {
+         
+      people: [{ name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '1' },
+      { name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '2' },
+      { name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '3' }
+      ],
+  nom:null
+}
     
     return (
       <View style={GlobalStyles.container}>
