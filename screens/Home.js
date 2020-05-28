@@ -1,13 +1,14 @@
 import React,{useState} from 'react';
-import { StyleSheet, Text, View,Button ,TouchableOpacity,Image,ScrollView} from 'react-native';
+import { StyleSheet, Text, View,Button ,TouchableOpacity,Image,ScrollView,Modal,TouchableWithoutFeedback,Keyboard} from 'react-native';
 import GlobalStyles from '../assets/Gen_styles';
 import { FlatList } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/AntDesign';
 class Home extends React.Component{
   constructor(){
     super()
     this.state={
-      nom:'marwan',
-    
+      nom:'',
+     
       people: [{ name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '1' },
       { name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '2' },
       { name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '3' }
@@ -53,6 +54,8 @@ class Home extends React.Component{
 </View>
 
 </View>:
+<View>
+
         <View style={GlobalStyles.panel} >
           <View  style={GlobalStyles.sugges}>
           <Text style={GlobalStyles.conn}> Pour bénéficier de la totalité des</Text>
@@ -62,18 +65,19 @@ class Home extends React.Component{
 
           </View>
   
-        <TouchableOpacity   onPress={()=>this.props.navigation.navigate('Compte')}>
+        <TouchableOpacity    onPress={()=>this.props.navigation.navigate('Connect')}>
         <View style={GlobalStyles.buttonb}>
             <Text style={GlobalStyles.buttonText}>Se Connecter</Text>
             
         </View>
         
     </TouchableOpacity>
-    <TouchableOpacity>
+    <TouchableOpacity  onPress={()=>this.props.navigation.navigate('pasdecompte')}>
     <Text style={{color:"#008A00",fontSize:16,fontWeight:'bold',marginTop:10,marginBottom:20,}}>VOUS N'AVEZ PAS DE COMPTE?</Text>
 
     </TouchableOpacity>
 
+      </View>
       </View>}
 
       <View>
@@ -121,3 +125,17 @@ class Home extends React.Component{
   }
 
   export default Home;
+
+
+
+  
+     
+   
+
+
+
+
+
+
+
+  

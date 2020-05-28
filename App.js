@@ -8,7 +8,10 @@ import Home from './screens/Home';
 import Detail from './screens/Detail'
 import Produit from './screens/Produit'
 import Garde from './screens/Garde'
-
+import Connect from './screens/formulaire/Log';
+import Pharma from './screens/formulaire/Pharma';
+import Userform from './screens/formulaire/User';
+import Pas_de_compte from './screens/formulaire/Pas_de_compte';
 import Compte from './screens/Compte'
 import Recherche from './screens/Recherche'
 
@@ -58,6 +61,12 @@ export default  App=()=> {
   
   
     />
+    <Stack.Screen name="Connect" component={Connect} />
+<Stack.Screen name="Pharma" component={Pharma} />
+<Stack.Screen name="Userform" component={Userform} />
+<Stack.Screen name="pasdecompte" component={Pas_de_compte} />
+
+
 
 
     </Stack.Navigator>)

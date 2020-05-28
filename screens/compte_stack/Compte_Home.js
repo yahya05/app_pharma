@@ -5,10 +5,18 @@ import { TextInput } from 'react-native-paper';
 import Feather from 'react-native-vector-icons/Feather';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const Compte_Home=({navigation}) =>{
-
+class Compte_Home extends React.Component{
+  constructor(){
+    super()
+    this.state={
+      nom:'marwan',}}
+      render(
+     
+      ){
     return (
+  
       <View style={GlobalStyles.container}>
+           { this.state.nom ? <View>
         <View style={GlobalStyles.header} >
           <Text style={GlobalStyles.title}>MON Compte</Text>
         </View>
@@ -163,9 +171,48 @@ const Compte_Home=({navigation}) =>{
      </TouchableOpacity>
     </View>
     </ScrollView>
+    </View>
+     :
+      
+      <View >
+      <View>
+
+      <View style={{  alignItems:'center',
+ borderRadius:10,
+ alignSelf:"center",
+ backgroundColor:'white',
+ paddingVertical:5,
+ padding:30,
+ marginTop:"60%",
+ borderColor:'#E9E9E9',
+ borderWidth:1
+ }} >
+        <View  style={GlobalStyles.sugges}>
+        <Text style={GlobalStyles.conn}> Pour bénéficier de la totalité des</Text>
+      <Text style={GlobalStyles.conn}>  fonctionnalités de votre pharmacien,</Text> 
+
+      <Text style={GlobalStyles.conn}> Veuillez-vous connecter</Text>
+
+        </View>
+
+      <TouchableOpacity    onPress={()=>this.props.navigation.navigate('Connect')}>
+      <View style={GlobalStyles.buttonb}>
+          <Text style={GlobalStyles.buttonText}>Se Connecter</Text>
+          
       </View>
+      
+  </TouchableOpacity>
+  <TouchableOpacity  onPress={()=>this.props.navigation.navigate('pasdecompte')}>
+  <Text style={{color:"#008A00",fontSize:16,fontWeight:'bold',marginTop:10,marginBottom:20,}}>VOUS N'AVEZ PAS DE COMPTE?</Text>
+
+  </TouchableOpacity>
+
+    </View>
+    </View>
+    </View>  }
+    </View>
     );
-  }
+  }}
 
 
   const styles= StyleSheet.create({
