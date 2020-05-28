@@ -22,6 +22,7 @@ class Pharma_Map extends Component{
         const lat=position.coords.latitude;
         const long=position.coords.longitude;
         this.setState({lat,long})
+        console.log(lat,long)
         this.getPlaces()
       }
     )
@@ -54,7 +55,7 @@ class Pharma_Map extends Component{
             var etat="etat=fermée"
 
           } catch (error) {
-            console.log('Error')
+            var etat="non declaree"
           }}
 
          arrayMarker.push(

@@ -3,18 +3,76 @@ import { StyleSheet, Text, View,Button ,TouchableOpacity,Image,ScrollView,Modal,
 import GlobalStyles from '../assets/Gen_styles';
 import { FlatList } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {Linking} from 'react-native'
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 class Home extends React.Component{
   constructor(){
     super()
     this.state={
-      nom:'',
-     
+      nom:'yahya',
+      lat:null,
+      long:null,
+      places:[],
+      open:null,
+      latitude:33.5705099,
+      longitude:-7.579025800000001,
+      etat:null,
+      name:null,
+      adress:null,
+      num:'05222',
       people: [{ name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '1' },
       { name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '2' },
       { name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '3' }
       ],
     }
   }
+  UNSAFE_componentWillMount(){
+    
+    this.getPlaces()
+  }
+
+
+getPlaces=()=>{
+const url=this.getUrlWithParameters(this.state.latitude,this.state.longitude,5,'pharmacy','AIzaSyAQ4Udmdmd60avwA2FGIPdu39WBtoFmefg')  
+fetch(url)
+.then((data)=>data.json())
+.then((res)=>{
+const arrayMarker=[];
+res.results.map((element,i)=>{
+  { try {
+    
+        
+    if(element.opening_hours.open_now)
+    var etat="etat=ouverte"
+    else 
+    var etat="etat=fermée"
+
+  } catch (error) {
+    var etat="non declaree"
+  }}
+  this.setState({adress:element.vicinity})
+ 
+  this.setState({etat:etat})
+  this.setState({name:element.name})
+
+
+ 
+})
+this.setState({places:arrayMarker})
+})
+}
+
+
+
+getUrlWithParameters=(lat,long,radius,type,API)=>{
+const url='https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
+const location=`location=${lat},${long}&radius=${radius}`;
+const typeData=`&type=${type}`;
+const key=`&key=${API}`;
+
+
+return (`${url}${location}${typeData}${key}`);
+}
   render(){
     state = {
          
@@ -36,12 +94,21 @@ class Home extends React.Component{
 
 <View style={{ flexDirection:'row', alignItems:"center",}} >
     <Image style={{height : 100,width : 100 ,borderRadius:360,paddingRight:"4%"}} source={require('../assets/bg.png')} />
-    <Text style={{fontSize:25,padding:"4%"}}>Pharmacie Dialo</Text>
+    <View style={{ width : "70%" }} >
+    <Text style={{fontSize:25}}>{this.state.name}</Text>
+
+    </View>
     </View>
 
-    <View  style={{ marginLeft:"3%", flexDirection:'column',alignItems:"flex-start",justifyContent:"flex-start"}} >
-        <Text style={{color:"red",paddingTop:"4%",fontSize:16}}>Actuellement : Ouverte </Text>
-        <Text  style={{fontSize:25}}>+212522627372 </Text>
+    <View  style={{ marginLeft:"3%"}} >
+        <Text style={{color:"red",paddingTop:"4%",fontSize:16}}>{this.state.etat} </Text>
+
+        <View style={{ marginLeft:"3%", flexDirection:'row',alignItems:"center",justifyContent:"space-around"}}>
+        <Text  style={{fontSize:25}} >{this.state.num}</Text>
+
+        <FontAwesome color="green" name='phone-square' size={30} onPress={()=>{Linking.openURL(`tel:${this.state.num}`);}} />
+        </View>
+
 </View>
 
 <View style={{marginTop:"10%",marginBottom:"2%"}}>

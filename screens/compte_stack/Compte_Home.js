@@ -24,7 +24,7 @@ class Compte_Home extends React.Component{
 
        
         <View style={{borderBottomColor:"#E0E0E0",borderBottomWidth:1}} >
-            <TouchableOpacity  onPress={()=>navigation.navigate('compte')}>
+            <TouchableOpacity  onPress={()=>this.props.navigation.navigate('compte')}>
                 <View  style={GlobalStyles.compte_g} >
                     <View style={GlobalStyles.compte}>
                           <Image source={require('../../assets/user_c.png')}  style={{alignSelf:"center",marginHorizontal:9,height:30,width:30}} />
@@ -63,7 +63,7 @@ class Compte_Home extends React.Component{
           <Text style={styles.text1} >MA PHARMACIE REFERENTE </Text>
         </View>
         <View style={{borderBottomColor:"#E0E0E0",borderBottomWidth:1}} >
-            <TouchableOpacity  onPress={()=>navigation.navigate('fav')}>
+            <TouchableOpacity  onPress={()=>this.props.navigation.navigate('fav')}>
                 <View  style={GlobalStyles.compte_g} >
                     <View style={GlobalStyles.compte}>
                         <View style={{borderWidth:2,borderColor:'#E9E9E9',borderRadius:100,paddingVertical:9,backgroundColor:'#F2F2F2',marginLeft:9}} >
@@ -92,7 +92,7 @@ class Compte_Home extends React.Component{
           <Text style={styles.text1} >MES ADRESSES ENREGISTREES </Text>
         </View>
         <View style={{borderBottomColor:"#E0E0E0",borderBottomWidth:1}} >
-            <TouchableOpacity   onPress={()=>navigation.navigate('adresse')}>
+            <TouchableOpacity   onPress={()=>this.props.navigation.navigate('adresse')}>
                 <View  style={GlobalStyles.compte_g} >
                     <View style={GlobalStyles.compte}>
                         <View style={{borderWidth:2,borderColor:'#E9E9E9',borderRadius:100,paddingVertical:9,backgroundColor:'#F2F2F2',marginLeft:9}} >
@@ -117,7 +117,7 @@ class Compte_Home extends React.Component{
             </TouchableOpacity>
         </View>
         <View style={{borderBottomColor:"#E0E0E0",borderBottomWidth:1}} >
-            <TouchableOpacity  onPress={()=>navigation.navigate('adresse')}>
+            <TouchableOpacity  onPress={()=>this.props.navigation.navigate('adresse')}>
                 <View  style={GlobalStyles.compte_g} >
                     <View style={GlobalStyles.compte}>
                         <View style={{borderWidth:2,borderColor:'#E9E9E9',borderRadius:100,paddingVertical:9,backgroundColor:'#F2F2F2',marginLeft:9}} >
