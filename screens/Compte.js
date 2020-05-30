@@ -10,10 +10,10 @@ import Compte_mdp from './compte_stack/Compte_mdp';
 import Compte_refe from './compte_stack/Compte_refe';
 import Compte_modifref from './compte_stack/Compte_modifref';
 import Compte_adresse from './compte_stack/Compte_adresse';
-import Connect from './screens/formulaire/Log';
-import Pharma from './screens/formulaire/Pharma';
-import Userform from './screens/formulaire/User';
-import Pas_de_compte from './screens/formulaire/Pas_de_compte';
+import Connect from './formulaire/Log';
+import Pharma from './formulaire/Pharma';
+import Userform from './formulaire/User';
+import Pas_de_compte from './formulaire/Pas_de_compte';
 const Stack =createStackNavigator();
 
 const Compte=({ navigation,route}) =>{
