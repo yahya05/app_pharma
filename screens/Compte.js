@@ -10,10 +10,6 @@ import Compte_mdp from './compte_stack/Compte_mdp';
 import Compte_refe from './compte_stack/Compte_refe';
 import Compte_modifref from './compte_stack/Compte_modifref';
 import Compte_adresse from './compte_stack/Compte_adresse';
-import Connect from './formulaire/Log';
-import Pharma from './formulaire/Pharma';
-import Userform from './formulaire/User';
-import Pas_de_compte from './formulaire/Pas_de_compte';
 const Stack =createStackNavigator();
 
 const Compte=({ navigation,route}) =>{
@@ -53,10 +49,6 @@ const Compte=({ navigation,route}) =>{
     />
       <Stack.Screen name="adresse" component={Compte_adresse}
     />
-     <Stack.Screen name="Connect" component={Connect} />
-<Stack.Screen name="Pharma" component={Pharma} />
-<Stack.Screen name="Userform" component={Userform} />
-<Stack.Screen name="pasdecompte" component={Pas_de_compte} />
 
   </Stack.Navigator>)
 }
