@@ -3,34 +3,38 @@ import { StyleSheet, Text, View,Button ,TouchableOpacity,Image } from 'react-nat
 import GlobalStyles from '../../assets/Gen_styles';
 import { TextInput } from 'react-native-paper';
 import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 
-const Garde_Home=({navigation}) =>{
+class Garde_Home extends React.Component {
+render(){
 
-    return (
-      <View style={GlobalStyles.container}>
-        <View style={GlobalStyles.header} >
-          <Text style={GlobalStyles.title}>Pharmacie de garde</Text>
-        </View>
-        <View style={styles.view1}>
-          <Text style={styles.text1} >Entrer le nom de votre ville </Text>
-        </View>
- 
-        <View style={GlobalStyles.input_view}>
-            <TouchableOpacity onPress={()=>navigation.navigate('Detail')}>
+  return (
+    <View style={GlobalStyles.container}>
+      <View style={GlobalStyles.header} >
+        <Text style={GlobalStyles.title}>Pharmacie de garde</Text>
+      </View>
+      <View style={styles.view1}>
+        <Text style={styles.text1} >Entrer le nom de votre ville </Text>
+      </View>
+
+      <View style={GlobalStyles.input_view}>
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate('Detail')}>
             <TextInput style={GlobalStyles.input} placeholder="Rechercher une ville" 
-             editable = {false}
+            editable = {false}
             />
            <Feather name="search" size={26} style={GlobalStyles.icon} />
 
             </TouchableOpacity>
+<FontAwesome5 name="location-arrow" size={24} color="#008A00" onPress={()=>this.props.navigation.navigate('MAP_geo')} style={{position:"absolute", alignSelf:"flex-end",marginTop:"2%",marginRight:"2%"}} />
            
           </View>
-          <Image source={require('../../assets/garde_home.png')}  style={{alignSelf:"center",marginTop:30,marginTop:30,height:300,width:300}} />
+        <Image source={require('../../assets/garde_home.png')}  style={{alignSelf:"center",marginTop:30,marginTop:30,height:300,width:300}} />
 
-  
-      </View>
-    );
+
+    </View>
+  );
+}
   }
 
 

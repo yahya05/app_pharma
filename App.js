@@ -54,13 +54,7 @@ export default  App=()=> {
   
   
        />
-          <Stack.Screen name="Compte" component={Compte}
-    
-      
-       
-  
-  
-    />
+          
     <Stack.Screen name="Connect" component={Connect} />
 <Stack.Screen name="Pharma" component={Pharma} />
 <Stack.Screen name="Userform" component={Userform} />
