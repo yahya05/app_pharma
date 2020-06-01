@@ -1,5 +1,5 @@
-import React from 'react';
-import { ScrollView , View, TouchableHighlight, Text, TextInput, Button,StyleSheet,TouchableWithoutFeedback,Keyboard,Image } from 'react-native';
+import React,{useState} from 'react';
+import { ScrollView , View, TouchableHighlight, Text, TextInput, Button,StyleSheet,TouchableWithoutFeedback,Keyboard,Image ,Modal,TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Formik } from 'formik';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -7,8 +7,9 @@ import Foundation from 'react-native-vector-icons/Foundation';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import * as yup from "yup";
+import Icon from 'react-native-vector-icons/AntDesign';
 import GlobalStyles from '../../assets/Gen_styles';
-
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 const reviewSchema=yup.object({
     nom:yup.string().required().min(4),
@@ -25,12 +26,14 @@ const reviewSchema=yup.object({
 })
 
 export default function Pharm({navigation}) {
+  const [modalOpen,setModalOpen]=useState(false);
     return(
       <View>
 <ScrollView>
 <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
     
         <View style={globalStyles.container}>
+        
           
             <View style={globalStyles.Titrecontainer}>
             <Image source={require('../../assets/logo.png')}  style={{marginBottom:5}} />
@@ -39,6 +42,47 @@ export default function Pharm({navigation}) {
           
                 
             </View>
+            <Modal visible={modalOpen} animationType='slide'>
+            <View style={globalStyles.Titrecontainer}>
+
+            <Text style={{  fontWeight:"bold", fontSize:28,color : 'grey' }}>Entrez Votre Pharmacie </Text>
+          
+                
+            </View>
+            <TouchableOpacity onPress={()=>setModalOpen(false)}>
+        <Text style={{color:"#008A00",fontSize:17,fontWeight:"bold",textAlign:"right"}}>ANNULER</Text>
+
+
+        </TouchableOpacity>
+        <GooglePlacesAutocomplete
+      placeholder='Search'
+      minLength={7} // minimum length of text to search
+      autoFocus={false}
+      returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
+      listViewDisplayed='false'
+      onPress={(data, details = null) => {
+        // 'details' is provided when fetchDetails = true
+        console.log(data, details);
+      }}
+      query={{
+        key: 'AIzaSyAQ4Udmdmd60avwA2FGIPdu39WBtoFmefg',
+        language: 'fr', // language of the results
+        components: 'country:MA',
+        types:  ["pharmacy", "health", "point_of_interest", "store", "establishment"]
+      }}
+      styles={{
+        textInputContainer: {
+          width: '100%'
+        },
+        description: {
+          fontWeight: 'bold'
+        },
+       
+      }}
+      debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+
+    />
+            </Modal>
 
             <View >
                 <Formik
@@ -48,8 +92,7 @@ export default function Pharm({navigation}) {
                     ville : '',
                     adresse : '',
                     telephone : '',
-                    nom_phar:'',
-                    adresse_pharm:'',
+                   
                     fixe:'',
                     mdp : '', 
                     cmdp : '',
@@ -115,30 +158,8 @@ export default function Pharm({navigation}) {
                                 
                             </View>
                             <Text style={globalStyles.error}>{props.touched.telephone && props.errors.telephone}</Text>
+                          
                             
-                            <View style={globalStyles.inputContainer} >
-                                <MaterialIcons name="local-pharmacy" style={globalStyles.inputIcon} />
-                                <TextInput 
-                                style={globalStyles.inputs}
-                                placeholder='Votre Nom de Pharmacie'
-                                onChangeText={props.handleChange('nom_phar')}
-                                value={props.values.nom_phar} 
-                                 onBlur={props.handleBlur('nom_phar')}
-                                />
-                                 
-                            </View>
-                            <Text style={globalStyles.error}>{props.touched.nom_phar && props.errors.nom_phar}</Text>
-                            <View style={globalStyles.inputContainer} >
-                                <MaterialIcons name="local-pharmacy" style={globalStyles.inputIcon} />
-                                <TextInput 
-                                style={globalStyles.inputs}
-                                placeholder='Votre Adresse de Pharmacie'
-                                onChangeText={props.handleChange('adresse_pharm')}
-                                value={props.values.adresse_pharm}
-                                onBlur={props.handleBlur('adresse_pharm')}
-                                />
-                                </View>
-                                <Text style={globalStyles.error}>{props.touched.adress_pharm && props.errors.adresse_pharm}</Text>
                             <View style={globalStyles.inputContainer} >
                                 <Foundation name="telephone-accessible" style={globalStyles.inputIcon} />
                                 <TextInput 
@@ -178,7 +199,13 @@ export default function Pharm({navigation}) {
                                 onBlur={props.handleBlur('cmdp')}
                                 />
                                 </View>
-                                <Text style={globalStyles.error}>{props.touched.cmdp && props.errors.cmdp}</Text>
+                                <Text style={{ color:'green',
+            textAlign:'center',
+            
+            fontWeight:'bold',}}>{props.touched.cmdp && props.errors.cmdp}</Text>
+                                <TouchableOpacity onPress={()=>setModalOpen(true)} >
+                                <Text style={{color:"#008A00",alignSelf:"center",fontSize:20,fontWeight:"bold",marginVertical:"3%"}}>Votre Pharmacie </Text>
+                            </TouchableOpacity>
                             <TouchableHighlight onPress={props.handleSubmit } >
                             <View style={GlobalStyles.buttonb_C}>
             <Text style={GlobalStyles.buttonText}>S'inscrire</Text>
@@ -273,7 +300,7 @@ export default function Pharm({navigation}) {
             
           },
           error:{
-            color:'red',
+            color:'green',
             textAlign:'center',
             marginBottom:'5%',
             fontWeight:'bold',

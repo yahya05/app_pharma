@@ -9,7 +9,7 @@ class Home extends React.Component{
   constructor(){
     super()
     this.state={
-      nom:'yahya',
+      nom:'',
       lat:null,
       long:null,
       places:[],
