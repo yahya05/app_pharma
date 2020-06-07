@@ -9,7 +9,7 @@ class Home extends React.Component{
   constructor(){
     super()
     this.state={
-      nom:'',
+      nom:'marwan',
       lat:null,
       long:null,
       places:[],
@@ -20,6 +20,7 @@ class Home extends React.Component{
       name:null,
       adress:null,
       num:'05222',
+      type:'pharma',
       people: [{ name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '1' },
       { name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '2' },
       { name: 'CORONA', date: '14/10/1998', titre: "Faire ses courses au temps du Covid-19", key: '3' }
@@ -90,7 +91,37 @@ return (`${url}${location}${typeData}${key}`);
 <Text style={{color:"#008A00",fontWeight:"bold",fontSize:18}}> LePharmacien</Text>
         </View>
       <ScrollView>
-      {this.state.nom ?      <View style={GlobalStyles.panel_cnx} >
+      {this.state.nom ?    this.state.type=='pharma' ? <View style={GlobalStyles.panel_cnx} >
+
+<View style={{ flexDirection:'row', alignItems:"center",}} >
+    <Image style={{height : 100,width : 100 ,borderRadius:360,paddingRight:"4%"}} source={require('../assets/bg.png')} />
+    <View style={{ width : "70%" }} >
+    <Text style={{fontSize:25}}>nom de ma pharmacie</Text>
+
+    </View>
+    </View>
+
+    <View  style={{ marginLeft:"3%"}} >
+        <Text style={{color:"red",paddingTop:"4%",fontSize:16}}>mon etat </Text>
+
+        <View style={{ marginLeft:"3%", flexDirection:'row',alignItems:"center",justifyContent:"space-around"}}>
+        <Text  style={{fontSize:25}} >mon num</Text>
+
+        <FontAwesome color="green" name='phone-square' size={30} />
+        </View>
+
+</View>
+
+<View style={{marginTop:"10%",marginBottom:"2%"}}>
+  
+    <TouchableOpacity  onPress={() => this.props.navigation.navigate('Garde')} >
+    <Text style={{color:"#008A00",alignSelf:"center",fontSize:17,fontWeight:"bold",paddingBottom:0}}>TROUVER UNE PHARMACIE</Text>
+    <Text style={{color:"#008A00",alignSelf:"center",fontSize:17,fontWeight:"bold",paddingTop:0}}>OUVERTE OU DE GARDE</Text>
+
+    </TouchableOpacity>
+</View>
+
+</View> : <View style={GlobalStyles.panel_cnx} >
 
 <View style={{ flexDirection:'row', alignItems:"center",}} >
     <Image style={{height : 100,width : 100 ,borderRadius:360,paddingRight:"4%"}} source={require('../assets/bg.png')} />

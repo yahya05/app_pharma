@@ -14,6 +14,11 @@ import Userform from './screens/formulaire/User';
 import Pas_de_compte from './screens/formulaire/Pas_de_compte';
 import Compte from './screens/Compte'
 import Recherche from './screens/Recherche'
+import Panier from './screens/Panier';
+import Ordon from './screens/panier_stack/Ordon';
+import Ordon_contenu from './screens/panier_stack/Ordon_contenu';
+import Ordon_cont_phar from './screens/panier_stack/Ordon_cont_phar';
+
 
 
 const Stack =createStackNavigator();
@@ -61,7 +66,12 @@ export default  App=()=> {
   
   
     />
+ 
+       <Stack.Screen name="Panier" component={Panier}/>
+    
+   
     <Stack.Screen name="Connect" component={Connect} />
+
 <Stack.Screen name="Pharma" component={Pharma} />
 <Stack.Screen name="Userform" component={Userform} />
 <Stack.Screen name="pasdecompte" component={Pas_de_compte} />
@@ -99,7 +109,9 @@ export default  App=()=> {
         else if (route.name === 'Compte') {
           iconName = focused ? require('./assets/user.png') : require('./assets/userr.png');
         }
-     
+        else if (route.name === 'Panier') {
+          iconName = focused ? require('./assets/panier.png') : require('./assets/panier_.png');
+        }
 
         // You can return any component that you like here!
         return( <Image source={iconName} style={{width:28,height:29}} resizeMode="contain"/>)
@@ -130,6 +142,9 @@ export default  App=()=> {
       
       />
       <MaterialBot.Screen name="Produit" component={Produit}
+      
+      />
+       <MaterialBot.Screen name="Panier" component={Panier}
       
       />
       <MaterialBot.Screen name="Compte" component={Compte}

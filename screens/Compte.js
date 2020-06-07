@@ -10,6 +10,9 @@ import Compte_mdp from './compte_stack/Compte_mdp';
 import Compte_refe from './compte_stack/Compte_refe';
 import Compte_modifref from './compte_stack/Compte_modifref';
 import Compte_adresse from './compte_stack/Compte_adresse';
+import Compte_modif_phar from './compte_stack/Compte_modif_phar';
+
+
 const Stack =createStackNavigator();
 
 const Compte=({ navigation,route}) =>{
@@ -34,7 +37,7 @@ const Compte=({ navigation,route}) =>{
 
   
   >
-    <Stack.Screen name="Home" component={Compte_Home}
+    <Stack.Screen name="Compte_Home" component={Compte_Home}
     />
 
    <Stack.Screen name="compte" component={Compte_D}
@@ -48,6 +51,8 @@ const Compte=({ navigation,route}) =>{
     <Stack.Screen name="modifav" component={Compte_modifref}
     />
       <Stack.Screen name="adresse" component={Compte_adresse}
+    />
+      <Stack.Screen name="Compte_modif_phar" component={Compte_modif_phar}
     />
 
   </Stack.Navigator>)
