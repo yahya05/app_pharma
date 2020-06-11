@@ -10,7 +10,7 @@ class Compte_Home extends React.Component{
     super()
     this.state={
       nom:'marwan',
-    type:'pharma'}}
+    type:'USER'}}
       render(
      
       ){

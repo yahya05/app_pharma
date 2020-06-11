@@ -29,6 +29,75 @@ export default function Pharm({navigation}) {
   const [modalOpen,setModalOpen]=useState(false);
     return(
       <View>
+          <Modal visible={modalOpen} animationType='slide'>
+            <View style={globalStyles.Titrecontainer}>
+
+            <Text style={{  fontWeight:"bold", fontSize:28,color : 'grey' }}>Entrez Votre Pharmacie </Text>
+          
+                
+            </View>
+          
+       
+
+<GooglePlacesAutocomplete
+       placeholder="exemple:pharmacie 'nom de la pharmacie'"
+
+      minLength={7} // minimum length of text to search
+      autoFocus={false}
+      returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
+      listViewDisplayed='true'    // true/false/undefined
+      fetchDetails={true}
+      renderDescription={row => row.description} // custom description render
+      onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
+        console.log(data, details);
+      }}
+      
+      getDefaultValue={() => ' '}
+      
+      query={{
+        // available options: https://developers.google.com/places/web-service/autocomplete
+        key: 'AIzaSyAQ4Udmdmd60avwA2FGIPdu39WBtoFmefg',
+        language: 'fr', // language of the results
+        default: 'geocode',
+        components: 'country:MA',
+        types:  ["pharmacy", "health", "point_of_interest", "store", "establishment"]
+      }}
+      
+      styles={{
+        textInputContainer: {
+          width: '100%'
+        },
+        description: {
+          fontWeight: 'bold'
+        },
+       
+      }}
+      
+      currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
+      currentLocationLabel="Current location"
+      nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+      GoogleReverseGeocodingQuery={{
+        // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
+        
+      }}
+      GooglePlacesSearchQuery={{
+        // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
+        rankby: 'distance',
+        type: 'pharmacy'
+      }}
+
+      filterReverseGeocodingByTypes={ ["pharmacy", "health", "point_of_interest", "store", "establishment"]} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+      
+
+      debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
+    /*  renderLeftButton={()  => <Image source={require('path/custom/left-icon')} />}*/
+      renderRightButton={() =>   <TouchableOpacity onPress={()=>setModalOpen(false)}>
+      <Text style={{color:"#008A00",fontSize:17,fontWeight:"bold",textAlign:"right",marginTop:"13%"}}>SUIVANT</Text>
+
+
+      </TouchableOpacity>}
+    />
+            </Modal>
 <ScrollView>
 <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
     
@@ -42,47 +111,7 @@ export default function Pharm({navigation}) {
           
                 
             </View>
-            <Modal visible={modalOpen} animationType='slide'>
-            <View style={globalStyles.Titrecontainer}>
-
-            <Text style={{  fontWeight:"bold", fontSize:28,color : 'grey' }}>Entrez Votre Pharmacie </Text>
           
-                
-            </View>
-            <TouchableOpacity onPress={()=>setModalOpen(false)}>
-        <Text style={{color:"#008A00",fontSize:17,fontWeight:"bold",textAlign:"right"}}>ANNULER</Text>
-
-
-        </TouchableOpacity>
-        <GooglePlacesAutocomplete
-      placeholder='Search'
-      minLength={7} // minimum length of text to search
-      autoFocus={false}
-      returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
-      listViewDisplayed='false'
-      onPress={(data, details = null) => {
-        // 'details' is provided when fetchDetails = true
-        console.log(data, details);
-      }}
-      query={{
-        key: 'AIzaSyAQ4Udmdmd60avwA2FGIPdu39WBtoFmefg',
-        language: 'fr', // language of the results
-        components: 'country:MA',
-        types:  ["pharmacy", "health", "point_of_interest", "store", "establishment"]
-      }}
-      styles={{
-        textInputContainer: {
-          width: '100%'
-        },
-        description: {
-          fontWeight: 'bold'
-        },
-       
-      }}
-      debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
-
-    />
-            </Modal>
 
             <View >
                 <Formik
