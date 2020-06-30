@@ -6,27 +6,39 @@ import Feather from 'react-native-vector-icons/Feather';
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import MapViewDirections from'react-native-maps-directions'
+import { observer , inject  } from "mobx-react";
 
-
+@inject('store')
+@observer
 class Compte_refe extends React.Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state={
       lat:null,
       long:null,
       places:[],
       open:null,
-      latitude:33.5705099,
-      longitude:-7.579025800000001,
+      latitude:this.props.store.lat,
+      longitude:this.props.store.lng,
       etat:null,
       name:null,
-      adress:null
+      adress:null,
+      garde : null
     }
     
   }
   UNSAFE_componentWillMount(){
     
         this.getPlaces()
+    if (this.props.store.toggle === true ) {
+      this.setState({
+        garde : 'ouvert'
+      })
+    }else{
+      this.setState({
+        garde : 'fermée'
+      })
+    }
       }
     
   
@@ -38,8 +50,6 @@ class Compte_refe extends React.Component{
     const arrayMarker=[];
     res.results.map((element,i)=>{
       { try {
-        
-            
         if(element.opening_hours.open_now)
         var etat="etat=ouverte"
         else 
@@ -58,8 +68,8 @@ class Compte_refe extends React.Component{
        <Marker 
        key={i}
        coordinate= {{
-         latitude:element.geometry.location.lat,
-         longitude:element.geometry.location.lng,
+         latitude:this.state.latitude,
+         longitude:this.state.longitude,
     
        }}
        title={element.name}
@@ -117,15 +127,12 @@ render(){
         
           
          
-        <Text style={{color:"red",padding:"4%"}} >{this.state.etat} </Text>
+        <Text style={{color:"red",padding:"4%"}} >{this.state.garde} </Text>
             
            </View>
            <View style={{backgroundColor:"white",borderBottomColor:"#E0E0E0",borderBottomWidth:1}}  >
          
-        
-          
-         
-         <Text style={{color:"grey",padding:"4%"}} >Adresse:{this.state.adress}   </Text>
+         <Text style={{color:"grey",padding:"4%"}} >Adresse:{this.props.store.add}</Text>
 
              
             </View>
@@ -134,13 +141,13 @@ render(){
         
           
          
-         <Text style={{color:"grey",padding:"4%",fontSize:16}} >0538165161  </Text>
+         <Text style={{color:"grey",padding:"4%",fontSize:16}} >{this.props.store.phone_pharma}</Text>
 
              
             </View>
 
             <View style={{marginVertical:19}}>
-    <TouchableOpacity  onPress={()=>navigation.navigate('modifav')}>
+    <TouchableOpacity  onPress={()=>this.props.navigation.navigate('modifav')}>
     <Text style={{color:"#008A00",alignSelf:"center",fontSize:17,fontWeight:"bold"}}>MODIFIER MA PHARMACIE REFERENTE</Text>
      </TouchableOpacity>
     </View>

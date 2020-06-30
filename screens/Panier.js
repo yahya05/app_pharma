@@ -1,32 +1,40 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { StyleSheet, Text, View,Button } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import Compte_Home from './compte_stack/Compte_Home';
-
 import GlobalStyles from '../assets/Gen_styles';
 import { createStackNavigator } from '@react-navigation/stack';
 import Panier_Home from './panier_stack/Panier_Home';
 import Ordon from './panier_stack/Ordon';
 import Ordon_cont_phar from './panier_stack/Ordon_cont_phar';
 import Ordon_contenu from './panier_stack/Ordon_contenu';
-
+import { Provider } from 'mobx-react'
+import { ScrollView } from 'react-native-gesture-handler';
+import { observer , inject  } from "mobx-react";
+import Loading_ord from './panier_stack/Loading_ord';
 
 const Stack =createStackNavigator();
-
-const Panier=({ navigation,route}) =>{
+ 
+@inject('store')
+@observer
+export default class Panier extends React.Component {
+  constructor(props){
+    super(props)
+  }
+  render() {
   
-  if(route.state && route.state.index>0){
-    navigation.setOptions({tabBarVisible:false})
+  if(this.props.route.state && this.props.route.state.index>0){
+    this.props.navigation.setOptions({tabBarVisible:false})
   }
   else{
-    navigation.setOptions({tabBarVisible:true})
+    this.props.navigation.setOptions({tabBarVisible:true})
 
   }
   
   return(
   <Stack.Navigator
   
-  initialRouteName="Panier"
+  initialRouteName="Home"
   headerMode="none"
 
  
@@ -35,6 +43,9 @@ const Panier=({ navigation,route}) =>{
 
   
   >
+    <Stack.Screen name="Loading" component={Loading_ord}
+    />
+
     <Stack.Screen name="Home" component={Panier_Home}
     />
 
@@ -50,6 +61,6 @@ const Panier=({ navigation,route}) =>{
 
   </Stack.Navigator>)
 }
-  export default Panier;
+  }
     
 

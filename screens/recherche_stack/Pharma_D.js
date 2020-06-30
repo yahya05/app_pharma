@@ -6,14 +6,22 @@ import { TextInput } from 'react-native-paper';
 
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { observer, inject } from "mobx-react"
+import { observable, action } from 'mobx' 
 
+@inject('store')
+@observer
+class Pharma_D extends React.Component {
+  constructor(props) {
+    super(props)
+  }
 
-const Pharma_D=({navigation}) =>{
-
+render () {
+  console.log(this.props.store.data_pharma)
     return (
       <View style={GlobalStyles.container}>
       <View style={GlobalStyles.header_B} >
-      
+       
       <View  style={GlobalStyles.header_Back}  >
 
         <TouchableOpacity onPress={()=>navigation.goBack()}>
@@ -44,4 +52,5 @@ const Pharma_D=({navigation}) =>{
     </View>
     );
   }
+}
   export default Pharma_D;

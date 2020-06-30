@@ -2,14 +2,17 @@ import React,{useState} from 'react';
 import { StyleSheet, Text, View,Button,TouchableOpacity,Image } from 'react-native';
 import GlobalStyles from '../../assets/Gen_styles';
 import Feather from 'react-native-vector-icons/Feather';
-
-
 import { TextInput } from 'react-native-paper';
+import { observer , inject  } from "mobx-react";
 
+@inject('store')
+@observer
 
-
-const Compte_adresse=({navigation}) =>{
-
+class Compte_adresse extends React.Component {
+  constructor(props) {
+      super(props)
+  }
+render() {
     return (
       <View style={GlobalStyles.container}>
       <View style={{flexDirection:'row',alignItems:"center",marginTop:"7%"}} >
@@ -35,7 +38,7 @@ const Compte_adresse=({navigation}) =>{
       
       <View   >
 
-        <TouchableOpacity onPress={()=>navigation.goBack()}>
+        <TouchableOpacity onPress={()=>this.props.navigation.goBack()}>
         <Text style={{color:"#008A00",fontSize:17,fontWeight:"bold",textAlign:"right"}}>ANNULER</Text>
 
 
@@ -50,4 +53,5 @@ const Compte_adresse=({navigation}) =>{
     </View>
     );
   }
+}
   export default  Compte_adresse;

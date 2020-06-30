@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { Component } from 'react'
 import { View, Image ,TouchableHighlight, Text, TextInput,StyleSheet,ScrollView,TouchableWithoutFeedback,Keyboard,TouchableOpacity } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import * as yup from 'yup';
@@ -6,14 +6,25 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Fontisto from 'react-native-vector-icons/Fontisto'
 import { Formik } from 'formik';
 import GlobalStyles from '../../assets/Gen_styles';
+import { _auth } from '../../config/config';
+
 
 const reviewSchema=yup.object({
  email:yup.string().required().min(8),
  password:yup.string().required().min(4),
 })
 
-export default function Connect(props) {
-    return(
+export default class Connect extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      isLoading: false
+    };
+  }
+  render() {
+  return(
       <View style={GlobalStyles.container}>
         
       <ScrollView>
@@ -23,7 +34,7 @@ export default function Connect(props) {
         <View>
         <View style={{  margin:10,flexDirection:'row'}} >
 
-<TouchableOpacity onPress={()=>props.navigation.goBack()}>
+<TouchableOpacity onPress={()=>this.props.navigation.goBack()}>
 <View>
 <Image source={require('../../assets/back.png')} style={GlobalStyles.back}  />
 
@@ -42,13 +53,28 @@ export default function Connect(props) {
                 <Formik
                 initialValues = {{ email:'', password:''}}
                 validationSchema={reviewSchema}
-                onSubmit={(values) =>
-                {   
-                    // const {email , password} = {this.initialValues}
-                    const {email , password} = {values}
-                    console.log(values)
-                    action.resetForm()
-                }
+                onSubmit={
+                  async (values) =>
+                  {
+                    this.setState({ 
+                    email : values.email,
+                    password : values.password,
+                     });
+                    if (this.state.email && this.state.password) {
+                      this.setState({ isLoading: true });
+                      try {
+                        const response = await _auth
+                          .signInWithEmailAndPassword(this.state.email, this.state.password);
+                        if (response) {
+                          this.setState({ isLoading: false });
+                          this.props.navigation.navigate('Loading');
+                        }
+                      } catch (error) {
+                        this.setState({ isLoading: false });
+                        alert('email ou mot de passe invalid')
+                      }
+                    }
+                  }
               }
                   >
                     {(props) => (
@@ -91,6 +117,7 @@ export default function Connect(props) {
         </ScrollView>
         </View>
     )
+}
 }
 const globalStyles=StyleSheet.create({
     
